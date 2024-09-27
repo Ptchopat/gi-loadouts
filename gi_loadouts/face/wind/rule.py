@@ -116,7 +116,7 @@ class Rule(QMainWindow, Ui_mainwind, Facility, Assess):
             self.head_area_line_prim.setText(f"{char.name}")
             self.head_area_line_seco.setText(f"{char.cons_name}")
             self.head_area_line_tert.setText(f"{char.weapon.value}")
-            self.head_area_line_quat.setText(f"<i>{char.name} is a {char.weapon.value.lower()}-wielding {char.vision.value.name if char.vision != Vision.none else ""} character of {char.rare.value.qant}-star quality.</i>")
+            self.head_area_line_quat.setText(f"<i>{char.name} is a {char.weapon.value.lower()}-wielding{f" {char.vision.value.name} " if char.vision != Vision.none else " "}character of {char.rare.value.qant}-star quality.</i>")
             self.head_area_line_quin.setText(f"<i>{char.name} is affiliated with {char.afln}.</i>" if char.afln != "" else f"<i>{char.name} is not affiliated with any association.</i>")
             self.manage_changing_appearance(char.vision.value.colour)
 
@@ -158,7 +158,7 @@ class Rule(QMainWindow, Ui_mainwind, Facility, Assess):
             self.weap_area_refn.clear()
             self.weap_area_refn_head.setText("No refinements available.")
             self.weap_area_refn_body.setText("No refinements available.")
-            self.weap_area_stat.setText("No substats.")
+            self.weap_area_stat.setText("No substats")
             weap = Family[kind][name]
             self.weap_area_levl.addItems([item.value.name for item in weap.levl_bind])
             self.weap_area_refn.addItems(item for item in weap.refinement.keys())
@@ -241,7 +241,7 @@ class Rule(QMainWindow, Ui_mainwind, Facility, Assess):
                 rare = getattr(Rare, droprare.currentText().replace(" ", "_"))
                 stat = getattr(arti, f"revmap_{part}")[dropstat.currentText().strip()]
                 item = getattr(team.value, part)
-                item.levl, item.rare, item.stat_name = levl.value.levl, rare.value.qant, stat
+                item.rare, item.levl, item.stat_name = rare.value.qant, levl.value.levl, stat
                 statdata.setText(f"{round(item.stat_data, 1)}")
 
     def change_artifact_team_by_changing_type(self, droptype: QComboBox, part: str) -> None:
@@ -450,7 +450,7 @@ class Rule(QMainWindow, Ui_mainwind, Facility, Assess):
         :return:
         """
         self.infoobjc = InfoDialog()
-        self.infoobjc.exec()
+        self.infoobjc.show()
 
     def show_lcns_dialog(self) -> None:
         """
@@ -459,7 +459,7 @@ class Rule(QMainWindow, Ui_mainwind, Facility, Assess):
         :return:
         """
         self.lcnsobjc = LcnsDialog()
-        self.lcnsobjc.exec()
+        self.lcnsobjc.show()
 
     def show_scan_dialog(self, part: str) -> None:
         """
