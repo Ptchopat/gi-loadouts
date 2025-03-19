@@ -29,6 +29,19 @@ classifiers= [
     "Typing :: Typed"
 ]
 
+ exclude = ["gi_loadouts/face/rsrc/font/text.py",
+ "gi_loadouts/face/rsrc/arti/__init__.py",
+ "gi_loadouts/face/rsrc/char/back.py",
+ "gi_loadouts/face/rsrc/char/wish.py",
+ "gi_loadouts/face/rsrc/data/__init__.py",
+ "gi_loadouts/face/rsrc/char/face.py",
+ "gi_loadouts/face/rsrc/font/icon.py",
+ "gi_loadouts/face/rsrc/rare/__init__.py",
+ "gi_loadouts/face/rsrc/char/name.py",
+ "gi_loadouts/face/rsrc/pmon/__init__.py",
+ "gi_loadouts/face/rsrc/weap/__init__.py",
+ "gi_loadouts/face/rsrc/vson/__init__.py"]
+
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
 pyside6-essentials = "^6.8.1,<6.8.1.1"
@@ -65,6 +78,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 gi-loadouts = "gi_loadouts.main:main"
 
+
 [tool.coverage]
 report = { show_missing = true }
 
@@ -79,3 +93,6 @@ omit = [
     "gi_loadouts/face/rsrc/vson/*.py",
     "gi_loadouts/face/rsrc/weap/*.py"
 ]
+
+[tool.poetry.build]
+script = "compile-qrc.py"
